@@ -133,7 +133,7 @@ export default function Home() {
 
                     <div className='mt-10'>
 
-                        {isFormVisible && <div className='w-2/3 mx-auto'><RecipeCreator /></div>}
+                        {isFormVisible && <div className='lg:w-2/3 mx-auto'><RecipeCreator /></div>}
                         {showPriceForm && <UpdatePriceForm />}
                         <div className='my-5'>
                             {showUpdateMMPP && <UpdateQuantityForm />}
