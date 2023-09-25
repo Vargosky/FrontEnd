@@ -73,7 +73,7 @@ const RecipeCreator = () => {
 
 
     return (
-        <div className="bg-green-100 rounded-3xl shadow-2xl w-full">
+        <div className="py-5 bg-green-100 rounded-3xl shadow-2xl w-full">
             <h1 className="text-2xl font-bold mb-4 text-orange-500 text-center">Receta Subproducto</h1>
             <div className="mb-4 text-center rounded-2xl">
                 <div className=' bg-orange-50 shadow-2xl p-10 text-center rounded-2xl my-10'>
