@@ -15,7 +15,7 @@ export const buscarMateriaPrimaPorNombre = async (nombre) => {
 };
 
 export const getAllRawMaterials = async () => {
-    const response = await fetch(`${API_URL}/all`);
+    const response = await fetch(`${API_URL}all`);
     const data = await response.json();
     return data;
 };
