@@ -28,7 +28,7 @@ function Inventario() {
                             <th>Nombre</th>
                             <th>Stock</th>
                             <th>Stock Crítico</th>
-                            <th>costoPorUnidad</th>
+                            <th>CPU</th>
                             {/* Agrega más columnas aquí según necesites */}
                         </tr>
                     </thead>
