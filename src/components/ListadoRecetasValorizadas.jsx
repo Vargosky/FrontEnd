@@ -78,55 +78,54 @@ function Recipes() {
 
     return (
         <div className="p-4">
-
+    
             <div className="p-4">
                 <h1 className="text-4xl mb-20 font-bold capitalize tracking-widest">Recetas valorizadas</h1>
-                <table className="table-auto w-full mt-2 shadow-xl">
-                    <thead>
-                        <tr>
-                            <th className="border px-4 py-2 text-center font-bold">Nombre</th>
-                            <th className="border px-4 py-2 text-center font-bold">Categoría</th>
-                            <th className="border px-4 py-2 text-center font-bold">Valor Total</th>
-                            <th className="border px-4 py-2 text-center font-bold">Peso Antes Horno</th>
-                            <th className="border px-4 py-2 text-center font-bold">Precio por Gramo</th>
-                            {/* Agrega más columnas según sea necesario */}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {Array.isArray(recipes) ? recipes.map((recipe, index) => (
-                            <tr key={recipe ? recipe._id : index}>
-                                <td className="border px-4 py-2 text-center">{recipe ? recipe.name : 'N/A'}</td>
-                                <td className="border px-4 py-2 text-center">{recipe ? recipe.category : 'N/A'}</td>
-                                <td className="border px-4 py-2 text-center">
-                                    {recipe && recipe.valorizado && recipe.valorizado.total && recipe.valorizado.total.valor != null ?
-                                        Math.round(recipe.valorizado.total.valor, 2) :
-                                        'N/A'}
-                                </td>
-                                <td className="border px-4 py-2 text-center">
-                                    {recipe && recipe.valorizado && recipe.valorizado.totalCantidad != null ?
-                                        recipe.valorizado.totalCantidad :
-                                        'N/A'}
-                                </td>
-                                <td className="border px-4 py-2 text-center">
-                                    {recipe && recipe.valorizado && recipe.valorizado.total && recipe.valorizado.total.valor != null && recipe.valorizado.totalCantidad != null ?
-                                        (recipe.valorizado.total.valor / recipe.valorizado.totalCantidad).toFixed(2) :
-                                        'N/A'}
-                                </td>
-                                {/* Agrega más celdas según sea necesario */}
+                
+                <div className="overflow-x-auto">
+                    <table className="table-auto w-full mt-2 shadow-xl">
+                        <thead>
+                            <tr>
+                                <th className="border px-4 py-2 text-center font-bold">Nombre</th>
+                                <th className="border px-4 py-2 text-center font-bold">Categoría</th>
+                                <th className="border px-4 py-2 text-center font-bold">Valor Total</th>
+                                <th className="border px-4 py-2 text-center font-bold">Peso Antes Horno</th>
+                                <th className="border px-4 py-2 text-center font-bold">Precio por Gramo</th>
                             </tr>
-                        )) : null}
-                    </tbody>
-
-                </table>
-                <div className='w-full justify-evenly flex my-10'>
-
+                        </thead>
+                        <tbody>
+                            {Array.isArray(recipes) ? recipes.map((recipe, index) => (
+                                <tr key={recipe ? recipe._id : index}>
+                                    <td className="border px-4 py-2 text-center">{recipe ? recipe.name : 'N/A'}</td>
+                                    <td className="border px-4 py-2 text-center">{recipe ? recipe.category : 'N/A'}</td>
+                                    <td className="border px-4 py-2 text-center">
+                                        {recipe && recipe.valorizado && recipe.valorizado.total && recipe.valorizado.total.valor != null ?
+                                            Math.round(recipe.valorizado.total.valor, 2) :
+                                            'N/A'}
+                                    </td>
+                                    <td className="border px-4 py-2 text-center">
+                                        {recipe && recipe.valorizado && recipe.valorizado.totalCantidad != null ?
+                                            recipe.valorizado.totalCantidad :
+                                            'N/A'}
+                                    </td>
+                                    <td className="border px-4 py-2 text-center">
+                                        {recipe && recipe.valorizado && recipe.valorizado.total && recipe.valorizado.total.valor != null && recipe.valorizado.totalCantidad != null ?
+                                            (recipe.valorizado.total.valor / recipe.valorizado.totalCantidad).toFixed(2) :
+                                            'N/A'}
+                                    </td>
+                                </tr>
+                            )) : null}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div className='flex w-full justify-between my-10'>
                     <BsArrowLeftCircleFill
                         className='text-6xl cursor-pointer'
                         onClick={() => {
                             setPagina(pagina - 1);
                         }}
                     />
-
                     <BsArrowRightCircleFill
                         className='text-6xl cursor-pointer'
                         onClick={() => {
@@ -135,23 +134,23 @@ function Recipes() {
                     />
                 </div>
             </div>
-
-
-
-            <h1 className="text-4xl mb-20 font-bold  capitalize tracking-widest">Detalle Recetas valorizadas</h1>
-            <div className="flex flex-wrap justify-evenly">
+    
+            <h1 className="text-4xl mb-20 font-bold capitalize tracking-widest">Detalle Recetas valorizadas</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {Array.isArray(recipes) ? recipes.map((recipe, index) =>
                     recipe && recipe._id ? <RecipeCard key={recipe._id} recipe={recipe} /> : null
                 ) : null}
             </div>
-
-            <div className='w-full justify-end'><BsArrowRightCircleFill className='text-6xl cursor-pointer' onClick={() => {
-                setPagina(pagina + 1)
-                alert(pagina);
-
-            }} />  </div>
+    
+            <div className='flex w-full justify-end'>
+                <BsArrowRightCircleFill className='text-6xl cursor-pointer' onClick={() => {
+                    setPagina(pagina + 1)
+                    alert(pagina);
+                }} />
+            </div>
         </div>
     );
+    
 }
 
 export default Recipes;
