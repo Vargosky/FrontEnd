@@ -55,7 +55,7 @@ export default function Home() {
                 {/* //bptones hay que sacarlos en un componente */}
                 <div className="w-full md:w-1/6 flex flex-col items-center bg-gray-50 rounded-2xl">
                     <div className="w-full flex flex-col justify-center mt-6 space-y-5 rounded-2xl shadow-2xl px-1">
-                        <h3 className='text-3xl font-semibold shadow-xl text-center mb-5'>Pastelería Damasco</h3>
+                        <h3 className='text-3xl font-semibold shadow-xl text-center mb-5'>Pastelería Damascosss</h3>
                         <h4 className='text-l font-bold uppercase shadow-2xl text-center'>Materias Primas</h4>
                         <button
                             className={`transition duration-300 ease-in-out w-full mx-auto py-1 uppercase text-white rounded ${showNewMMPP ? 'bg-red-500 hover:bg-red-600 active:bg-red-700' : 'bg-green-500 hover:bg-green-600 hover:text-black active:bg-green-700'}`}
