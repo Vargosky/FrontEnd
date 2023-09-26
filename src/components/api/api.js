@@ -69,29 +69,32 @@ export const searchRawMaterialByName = async (name) => {
 };
 
 export const updateRawMaterial = async (id, data) => {
+    console.log({data:data,
+                id:id})
     try {
-        // Convertimos los datos a formato x-www-form-urlencoded
-        const formData = new URLSearchParams(data).toString();
-
-        const response = await fetch(API_URL+id, {
+        const response = await fetch("https://apii-bay.vercel.app/api/mmpp/" + id, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: formData
+            body: JSON.stringify(data)
         });
 
         const responseData = await response.json();
 
         if (response.ok) {
             console.log('Actualización exitosa:', responseData);
+            return responseData;
         } else {
             console.log('Error al actualizar:', responseData);
+            throw new Error(responseData.message || 'Error al actualizar');
         }
     } catch (error) {
         console.error('Error en la solicitud:', error);
+        throw error;
     }
 };
+
 
 
 export const saveRecipe = async (recipeData) => {

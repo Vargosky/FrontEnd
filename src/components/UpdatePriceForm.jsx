@@ -13,6 +13,7 @@ const UpdatePriceForm = () => {
     const [materialSeleccionado, setMaterialesSeleccionado] = useState(null);
 
     const onSubmit = async (data) => {
+        console.log({data})
         if (rawMaterial) {
             const updatedRawMaterial = await updateRawMaterial(rawMaterial.id, { costoPorUnidad: data.costoPorUnidad });
             console.log('Raw material updated:', updatedRawMaterial);
