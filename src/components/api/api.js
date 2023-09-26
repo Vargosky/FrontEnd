@@ -71,14 +71,14 @@ export const searchRawMaterialByName = async (name) => {
 export const updateRawMaterial = async (id, data) => {
     try {
         // Convertimos los datos a formato x-www-form-urlencoded
-        //const formData = new URLSearchParams(data).toString();
+        const formData = new URLSearchParams(data).toString();
 
         const response = await fetch(API_URL+id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: data
+            body: formData
         });
 
         const responseData = await response.json();
