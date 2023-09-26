@@ -73,7 +73,7 @@ export const updateRawMaterial = async (id, data) => {
         // Convertimos los datos a formato x-www-form-urlencoded
         //const formData = new URLSearchParams(data).toString();
 
-        const response = await fetch(API_URL_S + `mmpp/`+ id, {
+        const response = await fetch(API_URL+id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
