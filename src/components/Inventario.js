@@ -85,6 +85,7 @@ function Inventario() {
     const handleSave = async () => {
         try {
             const updatedData = {
+                nombre: selectedMaterial.nombre,
                 costoPorUnidad: selectedMaterial.costoPorUnidad,
                 cantidad: selectedMaterial.cantidad,
                 stockCritico: selectedMaterial.stockCritico
