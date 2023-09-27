@@ -92,7 +92,7 @@ export default function Home() {
                             className={`transition duration-300 ease-in-out w-full mx-auto shadow-2xl py-1 px-4 uppercase text-white rounded ${isFormVisible ? 'bg-red-500 hover:bg-red-600 active:bg-red-700' : 'bg-green-500 hover:bg-green-600 hover:text-black active:bg-green-700'}`}
                             onClick={() => setIsFormVisible(!isFormVisible)}
                         >
-                            {isFormVisible ? 'Cancelar' : 'Crear Subproducto'}
+                            {isFormVisible ? 'Cancelar' : 'Nueva Receta'}
                         </button>
 
                         <button
