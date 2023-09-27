@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { getRawMaterialsPaginated } from "./api/api";
 
+
+function convertirTexto(texto) {
+    if (texto == "gramos") {
+        return "[g]";
+    } else if (texto == "unidad") {
+        return "un";
+    } else {
+        return " ";
+    }
+}
+
+
+
 function Inventario() {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -43,7 +56,7 @@ function Inventario() {
                                     } text-center text-lg md:text-xl`} // Adjust font size
                             >
                                 <td className="p-2 w-1/3">{material.nombre}</td>
-                                <td className="py-2">{material.cantidad}</td>
+                                <td className="py-2">{material.cantidad} {convertirTexto(material.unidad)} </td>
                                 <td className="py-2 hidden md:table-cell px-3">{material.stockCritico}</td>
                                 <td className="py-2 px-3">{material.costoPorUnidad}</td>
                                 {/* Agrega más celdas aquí según necesites */}
