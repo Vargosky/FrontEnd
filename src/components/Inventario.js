@@ -25,10 +25,10 @@ function Inventario() {
                 <table className="table-auto w-full">
                     <thead>
                         <tr className="uppercase">
-                            <th className="py-2">Nombre</th>
+                            <th className="py-2 w-1/3">Nombre</th>
                             <th className="py-2">Stock</th>
-                            <th className="py-2 hidden md:table-cell">Stock Crítico</th>
-                            <th className="py-2">CPU</th>
+                            <th className="py-2 hidden md:table-cell px-3">Stock Crítico</th>
+                            <th className="py-2 px-3">CPU</th>
                             {/* Agrega más columnas aquí según necesites */}
                         </tr>
                     </thead>
@@ -42,10 +42,10 @@ function Inventario() {
                                     : "bg-green-300"
                                     } text-center text-lg md:text-xl`} // Adjust font size
                             >
-                                <td className="py-2">{material.nombre}</td>
+                                <td className="p-2 w-1/3">{material.nombre}</td>
                                 <td className="py-2">{material.cantidad}</td>
-                                <td className="py-2 hidden md:table-cell">{material.stockCritico}</td>
-                                <td className="py-2">{material.costoPorUnidad}</td>
+                                <td className="py-2 hidden md:table-cell px-3">{material.stockCritico}</td>
+                                <td className="py-2 px-3">{material.costoPorUnidad}</td>
                                 {/* Agrega más celdas aquí según necesites */}
                             </tr>
                         ))}
