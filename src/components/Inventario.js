@@ -27,7 +27,7 @@ function Inventario() {
                         <tr className="uppercase">
                             <th className="py-2">Nombre</th>
                             <th className="py-2">Stock</th>
-                            <th className="py-2">Stock Crítico</th>
+                            <th className="py-2 hidden md:table-cell">Stock Crítico</th>
                             <th className="py-2">CPU</th>
                             {/* Agrega más columnas aquí según necesites */}
                         </tr>
@@ -44,7 +44,7 @@ function Inventario() {
                             >
                                 <td className="py-2">{material.nombre}</td>
                                 <td className="py-2">{material.cantidad}</td>
-                                <td className="py-2">{material.stockCritico}</td>
+                                <td className="py-2 hidden md:table-cell">{material.stockCritico}</td>
                                 <td className="py-2">{material.costoPorUnidad}</td>
                                 {/* Agrega más celdas aquí según necesites */}
                             </tr>
