@@ -65,12 +65,12 @@ export default function Home() {
                             {showNewMMPP ? 'Cancelar' : 'Nueva MMPP'}
                         </button>
 
-                        <button
+                        {/* <button
                             className={`transition duration-300 ease-in-out w-full py-1 px-4 uppercase text-white rounded ${showUpdateQuantityMMPP ? 'bg-red-500 hover:bg-red-600 active:bg-red-700' : 'bg-green-500 hover:bg-green-600 hover:text-black active:bg-green-700'}`}
                             onClick={() => setShowUpdateQuantityMMPP(!showUpdateQuantityMMPP)}
                         >
                             {showListadoProduccion ? 'Cancelar' : 'Actualizar MMPP'}
-                        </button>
+                        </button> */}
 
                         <button
                             className={`transition duration-300 ease-in-out w-full py-1 px-4 uppercase text-white rounded ${showUpdateMMPP ? 'bg-red-500 hover:bg-red-600 active:bg-red-700' : 'bg-green-500 hover:bg-green-600 hover:text-black active:bg-green-700'}`}
@@ -79,12 +79,12 @@ export default function Home() {
                             {showUpdateMMPP ? 'Cancelar' : 'Inventario'}
                         </button>
 
-                        <button
+                        {/* <button
                             className={`transition duration-300 ease-in-out w-full py-1 px-4 uppercase text-white rounded ${showPriceForm ? 'bg-red-500 hover:bg-red-600 active:bg-red-700' : 'bg-green-500 hover:bg-green-600 hover:text-black active:bg-green-700'}`}
                             onClick={() => setShowPriceForm(!showPriceForm)}
                         >
                             {showPriceForm ? 'Cancelar' : 'Actualizar Precios'}
-                        </button>
+                        </button> */}
 
                         <h4 className='text-l font-bold uppercase shadow-2xl text-center'>Recetas</h4>
 

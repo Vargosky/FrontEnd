@@ -68,29 +68,26 @@ export const searchRawMaterialByName = async (name) => {
     }
 };
 
+// api.js (o donde sea que estés manteniendo tus funciones de API en el frontend)
+
 export const updateRawMaterial = async (id, data) => {
-    console.log({data:data,
-                id:id})
     try {
-        const response = await fetch("https://apii-bay.vercel.app/api/mmpp/" + id, {
+        const response = await fetch(`https://apii-bay.vercel.app/api/mmpp/${id}`, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         });
 
-        const responseData = await response.json();
-
-        if (response.ok) {
-            console.log('Actualización exitosa:', responseData);
-            return responseData;
-        } else {
-            console.log('Error al actualizar:', responseData);
-            throw new Error(responseData.message || 'Error al actualizar');
+        if (!response.ok) {
+            throw new Error('Error al actualizar la materia prima');
         }
+
+        const result = await response.json();
+        return result;
     } catch (error) {
-        console.error('Error en la solicitud:', error);
+        console.error("Error updating raw material:", error);
         throw error;
     }
 };
