@@ -13,6 +13,19 @@ function ProduccionesList() {
   const [cantidadPorPagina, setCantidadPorPagina] = useState(10);
   const [numPagina, setNumPagina] = useState(1);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduccion, setSelectedProduccion] = useState(null);
+
+  const handleRowClick = (produccion) => {
+    setSelectedProduccion(produccion);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduccion(null);
+  };
+
   useEffect(() => {
     const fetchProduccionesPaginadas = async () => {
       const respuesta = await obtenerProduccionesPaginadas(cantidadPorPagina, numPagina);
@@ -56,6 +69,7 @@ function ProduccionesList() {
   return (
     <div className="container mx-auto text-center">
       <h1 className="text-4xl font-bold mb-10 uppercase text-center">Sala de Produccion</h1>
+
       <div className="flex mb-10 items-center justify-around">
         <select 
           className="border-gray-300 border-2 rounded-md p-2 mr-2"
@@ -84,30 +98,44 @@ function ProduccionesList() {
           onChange={handleFechaHastaChange}
         />
       </div>
+
       <table className="border-2 shadow-2xl mx-auto mt-10 border-green-400">
         <thead>
           <tr>
+          <th className="border border-gray-300 px-4 py-2">Fecha</th>
             <th className="border border-gray-300 px-4 py-2">Receta</th>
             <th className="border border-gray-300 px-4 py-2">Cantidad</th>
-            <th className="border border-gray-300 px-4 py-2">Fecha de creación</th>
-            <th className="border border-gray-300 px-4 py-2">Maestro</th>
-            <th className="border border-gray-300 px-4 py-2">Estado</th>
-            <th className="border border-gray-300 px-4 py-2">Ingreso al Sistema</th>
           </tr>
         </thead>
         <tbody>
           {filteredProducciones.map((produccion) => (
-            <tr key={produccion._id}>
+            <tr key={produccion._id} onClick={() => handleRowClick(produccion)}>
+              <td className="border border-gray-300 px-4 py-2">{moment(produccion.fechaCreacion).subtract(10, 'days').calendar()}</td>
               <td className="border border-gray-300 px-4 py-2">{produccion.nombre}</td>
               <td className="border border-gray-300 px-4 py-2">{produccion.cantidad}</td>
-              <td className="border border-gray-300 px-4 py-2">{moment(produccion.fechaCreacion).format('LL')}</td>
-              <td className="border border-gray-300 px-4 py-2">{produccion.maestro}</td>
-              <td className="border border-gray-300 px-4 py-2">{produccion.estado}</td>
-              <td className="border border-gray-300 px-4 py-2">{moment(produccion.fechaIngreso).format('LLL')}</td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-5 rounded-lg shadow-md">
+            <h2 className="text-2xl mb-4">Detalles de Producción</h2>
+            <p><strong>Receta:</strong> {selectedProduccion.nombre}</p>
+            <p><strong>Cantidad:</strong> {selectedProduccion.cantidad}</p>
+            <p><strong>Fecha de creación:</strong> {moment(selectedProduccion.fechaCreacion).format('LL')}</p>
+            <p><strong>Maestro:</strong> {selectedProduccion.maestro}</p>
+            <p><strong>Estado:</strong> {selectedProduccion.estado}</p>
+            <p><strong>Ingreso al Sistema:</strong> {moment(selectedProduccion.fechaIngreso).format('LLL')}</p>
+            <button className="bg-blue-500 text-white p-2 rounded mt-4" onClick={handleCloseModal}>
+              Aceptar
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="flex justify-around mt-10">
         <button className="bg-blue-500 text-white p-2 rounded" onClick={handlePreviousPage}>
           Anterior
