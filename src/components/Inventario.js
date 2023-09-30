@@ -132,7 +132,7 @@ function Inventario() {
                                     : "bg-green-300"
                                     } text-center text-lg md:text-xl`}
                             >
-                                <td className="p-2 w-1/3">{material.nombre}</td>
+                                <td className="p-2 w-1/3 text-left">{material.nombre}</td>
                                 <td className="py-3">{material.cantidad} {convertirTexto(material.unidad)}</td>
                                 <td className="py-3 hidden md:table-cell px-3">{material.stockCritico}</td>
                                 <td className="py-3 px-3">$ {material.costoPorUnidad}</td>

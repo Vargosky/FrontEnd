@@ -13,6 +13,17 @@ function RecipeCard({ recipe, cantidad = 1 }) {
 
     }
 
+
+    function convertirTexto(texto) {
+        if (texto === "gramos") {
+            return "[g]";
+        } else if (texto === "unidad") {
+            return "[u]";
+        } else {
+            return " ";
+        }
+    }
+
     const getExistenciaProductoPorNombre = async (nombreMaterial) => {
 
         const respuesta = await buscarMateriaPrimaPorNombre(nombreMaterial);
@@ -54,8 +65,7 @@ function RecipeCard({ recipe, cantidad = 1 }) {
                         <tr>
                             <th className="border px-4 py-2 text-center font-bold">Ingrediente</th>
                             <th className="border px-4 py-2 text-center font-bold">Cantidad</th>
-                            <th className="border px-4 py-2 text-center font-bold">Unidad</th>
-                            <th className="border px-4 py-2 text-center font-bold">Inventario</th>
+                            <th className="border px-4 py-2 text-center font-bold">Stock</th>
                             { }
                         </tr>
                     </thead>
@@ -64,12 +74,23 @@ function RecipeCard({ recipe, cantidad = 1 }) {
                         {ingredients.map(({ name, quantity, unidad, existencia }) => (
                             <tr key={name} className={quantity * cantidad > existencia ? 'bg-red-200' : ''}>
                                 <td className="border px-4 py-2 text-center">{name}</td>
-                                <td className="border px-4 py-2 text-center">{quantity * cantidad}</td>
-                                <td className="border px-4 py-2 text-center">{unidad}</td>
-                                <td className="border px-4 py-2 text-center">{existencia}</td>
+                                <td className="border px-4 py-2 text-center">
+                                    <div className="flex items-center justify-center">
+                                        <span>{quantity * cantidad}</span>
+                                        <span className="ml-1">{convertirTexto(unidad)}</span>
+                                    </div>
+                                </td>
+                                <td className="border px-4 py-2 text-center">
+                                    <div className="flex items-center justify-center">
+                                        <span>{existencia}</span>
+                                        <span className="ml-1">{convertirTexto(unidad)}</span>
+                                    </div>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
+
+
 
                 </table>
             </div>
