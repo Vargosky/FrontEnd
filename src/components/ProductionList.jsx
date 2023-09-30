@@ -120,21 +120,44 @@ function ProduccionesList() {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-5 rounded-lg shadow-md">
-            <h2 className="text-2xl mb-4">Detalles de Producción</h2>
-            <p><strong>Receta:</strong> {selectedProduccion.nombre}</p>
-            <p><strong>Cantidad:</strong> {selectedProduccion.cantidad}</p>
-            <p><strong>Fecha de creación:</strong> {moment(selectedProduccion.fechaCreacion).format('LL')}</p>
-            <p><strong>Maestro:</strong> {selectedProduccion.maestro}</p>
-            <p><strong>Estado:</strong> {selectedProduccion.estado}</p>
-            <p><strong>Ingreso al Sistema:</strong> {moment(selectedProduccion.fechaIngreso).format('LLL')}</p>
-            <button className="bg-blue-500 text-white p-2 rounded mt-4" onClick={handleCloseModal}>
-              Aceptar
-            </button>
-          </div>
-        </div>
-      )}
+  <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-white p-5 rounded-lg shadow-md">
+      <h2 className="text-2xl mb-4">Detalles de Producción</h2>
+      <table className="w-full text-left">
+        <tbody>
+          <tr>
+            <td className="pr-4 font-bold">Receta:</td>
+            <td>{selectedProduccion.nombre}</td>
+          </tr>
+          <tr>
+            <td className="pr-4 font-bold">Cantidad:</td>
+            <td>{selectedProduccion.cantidad}</td>
+          </tr>
+          <tr>
+            <td className="pr-4 font-bold">Fecha de creación:</td>
+            <td>{moment(selectedProduccion.fechaCreacion).format('LL')}</td>
+          </tr>
+          <tr>
+            <td className="pr-4 font-bold">Maestro:</td>
+            <td>{selectedProduccion.maestro}</td>
+          </tr>
+          <tr>
+            <td className="pr-4 font-bold">Estado:</td>
+            <td>{selectedProduccion.estado}</td>
+          </tr>
+          <tr>
+            <td className="pr-4 font-bold">Ingreso al Sistema:</td>
+            <td>{moment(selectedProduccion.fechaIngreso).format('LLL')}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button className="bg-blue-500 text-white p-2 rounded mt-4" onClick={handleCloseModal}>
+        Aceptar
+      </button>
+    </div>
+  </div>
+)}
+
 
       <div className="flex justify-around mt-10">
         <button className="bg-blue-500 text-white p-2 rounded" onClick={handlePreviousPage}>
