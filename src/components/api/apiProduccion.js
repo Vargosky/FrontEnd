@@ -3,9 +3,10 @@ import { get } from 'react-hook-form';
 const API_URL = 'https://apii-bay.vercel.app/api/produccion/';
 
 
+
 export const obtenerTodasProducciones = async () => {
     try {
-        const response = await fetch(API_URL+"/all/");
+        const response = await fetch(API_URL+"all/");
         const data = await response.json();
         return data;
     } catch (error) {
@@ -13,10 +14,10 @@ export const obtenerTodasProducciones = async () => {
     }
 };
 
-
+//https://apii-bay.vercel.app/api/produccion/
 export const obtenerProduccionPorId = async (id) => {
     try {
-        const response = await fetch(API_URL+`${id}`);
+        const response = await fetch(API_URL+ id);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -69,11 +70,13 @@ export const eliminarProduccionPorId = async (id) => {
     }
 };
 
+//https://apii-bay.vercel.app/api/produccion/all/      https://apii-bay.vercel.app/api/produccion/
 export const obtenerProduccionesPaginadas = async (limite, pagina) => {
     try {
-      const response = await axios.get(`${API_URL}/${limite}/${pagina}`, {
+      const response = await axios.get(`${API_URL}${limite}/${pagina}`, {
         method:'GET',
       });
+      console.log(response);
       return response.data;
     } catch (error) {
       console.error('Hubo un error al obtener las producciones:', error);

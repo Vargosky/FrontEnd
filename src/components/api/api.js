@@ -20,8 +20,11 @@ export const getAllRawMaterials = async () => {
     return data;
 };
 
+//`${API_URL}/${id}`
+
 export const getRawMaterialById = async (id) => {
-    const response = await fetch(`${API_URL}/${id}`);
+    console.log(API_URL + id)
+    const response = await fetch(API_URL +  id);
     const data = await response.json();
     return data;
 };
