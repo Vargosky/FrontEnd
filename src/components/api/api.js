@@ -2,7 +2,8 @@ import axios from 'axios';
 const API_URL = 'https://apii-bay.vercel.app/api/mmpp/';
 const API_URL_S = 'https://apii-bay.vercel.app/api/'
 
-
+// const API_URL ='http://127.0.0.1:3001/api/mmpp/'
+// const API_URL_S ='http://127.0.0.1:3001/api/'
 
 export const buscarMateriaPrimaPorNombre = async (nombre) => {
     try {
@@ -197,6 +198,21 @@ export const getAllSubproductos = async () => {
     }
 };
 
+export async function getRecipe(id) {
+    try {//API_URL_S
+        const response = await fetch(API_URL_S+`subproducto/${id}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching the recipe:", error);
+        throw error;  // Puedes manejar el error de la forma que prefieras
+    }
+}
 
 
 

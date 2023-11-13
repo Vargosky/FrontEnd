@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiEdit2, FiTrash2 } from 'react-icons/fi';
-import { getAllRawMaterials, saveRecipe } from './api/api';
-
+import { getAllSubproductos, saveRecipe } from './api/api';
 
 const RecipeCreator = () => {
     const [recipes, setRecipes] = useState([]);
@@ -10,12 +9,12 @@ const RecipeCreator = () => {
     const [quantity, setQuantity] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
-    const [name, setName] = useState(''); // Nuevo estado para el nombre de la receta
-    const [category, setCategory] = useState(''); // Nuevo estado para el tipo de receta
+    const [name, setName] = useState('');
+    const [category, setCategory] = useState('');
 
     useEffect(() => {
         const fetchMaterials = async () => {
-            const data = await getAllRawMaterials();
+            const data = await getAllSubproductos();
             setMaterials(data);
         };
 
@@ -26,6 +25,7 @@ const RecipeCreator = () => {
         if (selectedMaterial && quantity) {
             const selectedMaterialData = materials.find(material => material.nombre === selectedMaterial);
             const newRecipe = { materiaPrimaId: selectedMaterialData._id, quantity, material: selectedMaterialData.nombre };
+            
             if (isEditing) {
                 const updatedRecipes = [...recipes];
                 updatedRecipes[editIndex] = newRecipe;
@@ -35,6 +35,7 @@ const RecipeCreator = () => {
             } else {
                 setRecipes([...recipes, newRecipe]);
             }
+            
             setQuantity('');
             setSelectedMaterial('');
         }
@@ -53,93 +54,129 @@ const RecipeCreator = () => {
     };
 
     const handleSave = async () => {
-        const newRecipe = { name, category, ingredients: recipes };
-        console.log(newRecipe);
-        try {
-            const response = await saveRecipe(newRecipe);
-            console.log('Receta guardada:', response);
-        } catch (error) {
-            console.error('Error al guardar la receta:', error);
+        const userConfirmed = window.confirm('¿Estás seguro de que quieres guardar esta receta?');
+        
+        if (userConfirmed) {
+            const newRecipe = { name, category, ingredients: recipes };
+            try {
+                const response = await saveRecipe(newRecipe);
+                console.log('Receta guardada:', response);
+                // Opcional: agregar un mensaje de éxito.
+            } catch (error) {
+                console.error('Error al guardar la receta:', error);
+                // Opcional: agregar un mensaje de error.
+            }
         }
     };
 
     return (
-        <div className="p-8 bg-orange-100 rounded-3xl shadow-2xl">
-            <h1 className="text-2xl font-bold mb-4 text-orange-500">Receta Subproducto</h1>
-            <div className="mb-4">
-                <input
-                    type="text"
-                    placeholder="Nombre de la receta"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="p-2 border rounded"
-                />
-                <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="p-2 border rounded"
-                >
-                    <option value="">Selecciona el tipo de receta</option>
-                    <option value="Masa">Masa</option>
-                    <option value="Relleno">Relleno</option>
-                </select>
+        <div className="p-6 max-w-xl mx-auto bg-white rounded-xl shadow-md space-y-4 sm:p-8">
+            <h1 className="text-3xl font-semibold mb-6 text-center text-gray-700">Receta Producto</h1>
+            
+            <div className="bg-gray-100 p-4 rounded-xl">
+                <div className="mb-4 space-y-2">
+                    <label className="text-md font-medium text-gray-600">Nombre de la receta</label>
+                    <input
+                        type="text"
+                        placeholder="Nombre de la receta"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full p-2 border rounded"
+                    />
+                </div>
+
             </div>
-            <div className="mb-4">
-                {recipes.map((recipe, index) => (
-                    <div
-                        key={index}
-                        className="flex items-center space-x-2 bg-orange-200 p-2 rounded"
-                    >
-                        <span className="font-medium">{recipe.material}:</span>
-                        <span>{recipe.quantity}</span>
-                        <button
-                            onClick={() => handleEditMaterial(index)}
-                            className="text-orange-500"
-                        >
-                            <FiEdit2 />
-                        </button>
-                        <button
-                            onClick={() => handleDeleteMaterial(index)}
-                            className="text-orange-500"
-                        >
-                            <FiTrash2 />
-                        </button>
+
+            <div className="bg-gray-100 p-4 rounded-xl space-y-4">
+                <h3 className="text-xl font-medium text-center text-gray-700">Ingredientes</h3>
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    <div>
+                        <input
+                            type="number"
+                            placeholder="Cantidad"
+                            value={quantity}
+                            onChange={(e) => setQuantity(e.target.value)}
+                            className="w-full p-2 border rounded"
+                        />
                     </div>
-                ))}
+                    <div>
+                        <select
+                            value={selectedMaterial}
+                            onChange={(e) => setSelectedMaterial(e.target.value)}
+                            className="w-full p-2 border rounded"
+                        >
+                            <option value="">Selecciona un material</option>
+                            {materials.map(material => (
+                                <option key={material.id} value={material.name}>
+                                    {material.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
+                        <select
+                            value={selectedMaterial}
+                            onChange={(e) => setSelectedMaterial(e.target.value)}
+                            className="w-full p-2 border rounded"
+                        >
+                            <option value="">Selecciona un material</option>
+                            {materials.map(material => (
+                                <option key={material.id} value={material.name}>
+                                    {material.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+                <div className="text-center mt-4">
+                    <button
+                        onClick={handleAddMaterial}
+                        className={`px-4 py-2 rounded ${isEditing ? 'bg-green-500' : 'bg-blue-500'} text-white shadow-md hover:shadow-lg transition-shadow`}
+                    >
+                        {isEditing ? 'Actualizar' : 'Agregar material'}
+                    </button>
+                </div>
             </div>
-            <div className="flex items-center space-x-4">
-                <select
-                    value={selectedMaterial}
-                    onChange={(e) => setSelectedMaterial(e.target.value)}
-                    className="p-2 border rounded"
-                >
-                    <option value="">Selecciona un material</option>
-                    {materials.map((material) => (
-                        <option key={material.id} value={material.nombre}>
-                            {material.nombre}
-                        </option>
-                    ))}
-                </select>
-                <input
-                    type="number"
-                    placeholder="Cantidad"
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                    className="p-2 border rounded"
-                />
+
+            <div className="bg-gray-100 p-4 rounded-xl space-y-4">
+                <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
+                    <thead className="bg-gray-200">
+                        <tr className="text-gray-600">
+                            <th className="px-4 py-2 text-left">Material</th>
+                            <th className="px-4 py-2 text-left">Cantidad</th>
+                            <th className="px-4 py-2 text-center">Editar</th>
+                            <th className="px-4 py-2 text-center">Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-gray-700">
+                        {recipes.map((recipe, index) => (
+                            <tr key={index} className="border-t border-gray-300 hover:bg-gray-50">
+                                <td className="px-4 py-2">{recipe.material}</td>
+                                <td className="px-4 py-2">{recipe.quantity}</td>
+                                <td className="px-4 py-2 text-center">
+                                    <button onClick={() => handleEditMaterial(index)} className="text-blue-500 hover:text-blue-700">
+                                        <FiEdit2 />
+                                    </button>
+                                </td>
+                                <td className="px-4 py-2 text-center">
+                                    <button onClick={() => handleDeleteMaterial(index)} className="text-red-500 hover:text-red-700">
+                                        <FiTrash2 />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            <div className="text-center mt-4">
                 <button
-                    onClick={handleAddMaterial}
-                    className={`p-2 rounded ${isEditing ? 'bg-green-500' : 'bg-blue-500'} text-white`}
+                    onClick={handleSave}
+                    className="px-4 py-2 bg-orange-500 text-white rounded shadow-md hover:shadow-lg transition-shadow"
                 >
-                    {isEditing ? 'Actualizar' : '+'}
+                    Crear nueva receta
                 </button>
             </div>
-            <button
-                onClick={handleSave}
-                className="mt-4 p-2 bg-orange-400 text-white rounded"
-            >
-                Crear nueva receta
-            </button>
         </div>
     );
 };
