@@ -113,28 +113,29 @@ function Inventario() {
             <h2 className="text-center font-bold my-10 text-2xl md:text-3xl">Listado de Materias Primas</h2>
     
             <div className="overflow-x-auto">
-                <table className="min-w-full bg-white shadow-md rounded-md">
-                    <thead>
-                        <tr className="text-gray-600 uppercase text-sm leading-normal">
-                            <th className="py-3 px-6 text-left">Nombre</th>
-                            <th className="py-3 px-6 text-center">Stock</th>
-                            <th className="py-3 px-6 text-center md:table-cell">Stock Crítico</th>
-                            <th className="py-3 px-6 text-center">CPU</th>
-                        </tr>
-                    </thead>
-                    <tbody className="text-gray-600 text-sm font-light">
-                        {rawMaterials.map((material) => (
-                            <tr key={material._id} onClick={() => handleRowClick(material)}
-                                className={`${material.cantidad <= material.stockCritico ? "bg-red-200" : "bg-green-200"} border-b border-gray-200 hover:bg-gray-100`}>
-                                <td className="py-3 px-6 text-left whitespace-nowrap">{material.nombre}</td>
-                                <td className="py-3 px-6 text-center">{material.cantidad} {convertirTexto(material.unidad)}</td>
-                                <td className="py-3 px-6 text-center md:table-cell">{material.stockCritico}</td>
-                                <td className="py-3 px-6 text-center">$ {material.costoPorUnidad}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+    <table className="w-full table-auto bg-white shadow-md rounded-md">
+        <thead>
+            <tr className="text-gray-600 uppercase text-sm leading-normal">
+                <th className="py-3 px-4 md:px-6 text-left">Nombre</th>
+                <th className="py-3 px-4 md:px-6 text-center">Stock</th>
+                <th className="hidden md:table-cell py-3 px-4 md:px-6 text-center">Stock Crítico</th>
+                <th className="hidden md:table-cell py-3 px-4 md:px-6 text-center">CPU</th>
+            </tr>
+        </thead>
+        <tbody className="text-gray-600 text-sm font-light">
+            {rawMaterials.map((material) => (
+                <tr key={material._id} onClick={() => handleRowClick(material)}
+                    className={`${material.cantidad <= material.stockCritico ? "bg-red-200" : "bg-green-200"} border-b border-gray-200 hover:bg-gray-100`}>
+                    <td className="py-3 px-4 md:px-6 text-left whitespace-nowrap">{material.nombre}</td>
+                    <td className="py-3 px-4 md:px-6 text-center">{material.cantidad} {convertirTexto(material.unidad)}</td>
+                    <td className="hidden md:table-cell py-3 px-4 md:px-6 text-center">{material.stockCritico}</td>
+                    <td className="hidden md:table-cell py-3 px-4 md:px-6 text-center">$ {material.costoPorUnidad}</td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
+
     
 <div className="mt-4 text-xl flex items-center">
     {/* Botón "Anterior" */}
