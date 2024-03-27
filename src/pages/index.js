@@ -117,7 +117,7 @@ export default function Home() {
                     <div className={`w-full mt-6 space-y-10 flex flex-col items-center ${fadeInClass}`}>
                         {/* Conditional Component Rendering */}
                         {currentComponent === 'RawMaterialForm' && <RawMaterialForm />}
-                        {currentComponent === 'RecipeFinalCreator' && <RecipeFinalCreator />}
+                        {/* {currentComponent === 'RecipeFinalCreator' && <RecipeFinalCreator />} */}
                         {currentComponent === 'ListadoRecetasValorizadas' && <><ListadoRecetasValorizadas /></>}
                         {currentComponent === 'RecipeCreator' && <RecipeCreator />}
                         {currentComponent === 'UpdatePriceForm' && <UpdatePriceForm />}

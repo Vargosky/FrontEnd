@@ -3,29 +3,29 @@ import { getValorizedRecipes } from './api/api'
 import { BsArrowRightCircleFill, BsArrowLeftCircleFill } from 'react-icons/bs'
 
 
-function RecipeModal({ recipe, isOpen, closeModal }) {
-    return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={closeModal}
-            style={customStyles}
-            contentLabel="Recipe Details Modal"
-        >
-            <h2>{recipe.name}</h2>
-            <p>{recipe.category}</p>
-            <div>
-                <h3>Ingredientes:</h3>
-                {/* Asegúrate de que la estructura de ingredientes se corresponda con esta */}
-                {Object.entries(recipe.valorizado.ingredientes).map(([name, details]) => (
-                    <p key={name}>
-                        Ingrediente: {name}, Valor: {details.valor}
-                    </p>
-                ))}
-                <button onClick={closeModal}>Cerrar</button>
-            </div>
-        </Modal>
-    );
-}
+// function RecipeModal({ recipe, isOpen, closeModal }) {
+//     return (
+//         <Modal
+//             isOpen={isOpen}
+//             onRequestClose={closeModal}
+//             style={customStyles}
+//             contentLabel="Recipe Details Modal"
+//         >
+//             <h2>{recipe.name}</h2>
+//             <p>{recipe.category}</p>
+//             <div>
+//                 <h3>Ingredientes:</h3>
+//                 {/* Asegúrate de que la estructura de ingredientes se corresponda con esta */}
+//                 {Object.entries(recipe.valorizado.ingredientes).map(([name, details]) => (
+//                     <p key={name}>
+//                         Ingrediente: {name}, Valor: {details.valor}
+//                     </p>
+//                 ))}
+//                 <button onClick={closeModal}>Cerrar</button>
+//             </div>
+//         </Modal>
+//     );
+// }
 
 
 
