@@ -15,6 +15,7 @@ import ProductionList from '../components/ProductionList';
 import FormularioCompras from '@/components/FormularioCompras';
 import ProveedorForm from '@/components/ProveedorForm';
 import RecipeCreatorFinal from '@/components/RecipeProductoFinal';
+import BuyList from '@/components/BuyList.js'
 
 
 
@@ -82,6 +83,7 @@ export default function Home() {
                                 <>
                                     <button onClick={() => handleComponentChange('RawMaterialForm')}>Nueva </button>
                                     <button onClick={() => handleComponentChange('Inventario')}>Inventario</button>
+                                    <button onClick={() => handleComponentChange('BuyList')}>Listado Compra</button>
                                 </>
                             }
                             <button onClick={() => { setMostrarBtnsReceta(!mostrarBtnsReceta) }} className='text-xl font-semibold shadow-xl text-center mb-5'> Recetas</button>
@@ -122,6 +124,7 @@ export default function Home() {
                         {currentComponent === 'RecipeCreator' && <RecipeCreator />}
                         {currentComponent === 'UpdatePriceForm' && <UpdatePriceForm />}
                         {currentComponent === 'Inventario' && <Inventario />}
+                        {currentComponent === 'BuyList' && <BuyList />}
                         {currentComponent === 'FormularioRecetas' && <FormularioRecetas />}
                         {currentComponent === 'ProductionList' && <ProductionList />}
                         {currentComponent === 'FormularioCompras' && <FormularioCompras />}
