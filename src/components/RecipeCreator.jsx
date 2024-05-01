@@ -25,7 +25,7 @@ const RecipeCreator = () => {
         if (selectedMaterial && quantity) {
             const selectedMaterialData = materials.find(material => material.nombre === selectedMaterial);
             const newRecipe = { materiaPrimaId: selectedMaterialData._id, quantity, material: selectedMaterialData.nombre };
-            
+
             if (isEditing) {
                 const updatedRecipes = [...recipes];
                 updatedRecipes[editIndex] = newRecipe;
@@ -35,7 +35,7 @@ const RecipeCreator = () => {
             } else {
                 setRecipes([...recipes, newRecipe]);
             }
-            
+
             setQuantity('');
             setSelectedMaterial('');
         }
@@ -55,7 +55,7 @@ const RecipeCreator = () => {
 
     const handleSave = async () => {
         const userConfirmed = window.confirm('¿Estás seguro de que quieres guardar esta receta?');
-        
+
         if (userConfirmed) {
             const newRecipe = { name, category, ingredients: recipes };
             try {
@@ -72,7 +72,7 @@ const RecipeCreator = () => {
     return (
         <div className="p-6 max-w-xl mx-auto bg-white rounded-xl shadow-md space-y-4 sm:p-8">
             <h1 className="text-3xl font-semibold mb-6 text-center text-gray-700">Receta Subproducto</h1>
-            
+
             {/* Bloque para el nombre y tipo de receta */}
             <div className="bg-gray-100 p-4 rounded-xl">
                 <div className="mb-4 space-y-2">
@@ -98,7 +98,7 @@ const RecipeCreator = () => {
                     </select>
                 </div>
             </div>
-    
+
             {/* Bloque para agregar ingredientes */}
             <div className="bg-gray-100 p-4 rounded-xl space-y-4">
                 <h3 className="text-xl font-medium text-center text-gray-700">Ingredientes</h3>
@@ -119,12 +119,13 @@ const RecipeCreator = () => {
                             className="w-full p-2 border rounded"
                         >
                             <option value="">Selecciona un material</option>
-                            {materials.map(material => (
+                            {materials.sort((a, b) => a.nombre.localeCompare(b.nombre)).map(material => (
                                 <option key={material.id} value={material.nombre}>
                                     {material.nombre}
                                 </option>
                             ))}
                         </select>
+
                     </div>
                 </div>
                 <div className="text-center mt-4">
@@ -136,7 +137,7 @@ const RecipeCreator = () => {
                     </button>
                 </div>
             </div>
-    
+
             {/* Lista de ingredientes */}
             <div className="bg-gray-100 p-4 rounded-xl space-y-4">
                 <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
@@ -168,7 +169,7 @@ const RecipeCreator = () => {
                     </tbody>
                 </table>
             </div>
-    
+
             {/* Botón de guardar */}
             <div className="text-center mt-4">
                 <button
@@ -180,7 +181,7 @@ const RecipeCreator = () => {
             </div>
         </div>
     );
-    
+
 };
 
 export default RecipeCreator;

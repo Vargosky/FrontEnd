@@ -124,6 +124,7 @@ function Recipes() {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
+                            {console.log(recipes)}
                             {Array.isArray(recipes) && recipes.map((recipe, index) => (
                                 <tr key={recipe ? recipe._id : index}>
                                     <td className="px-2 md:px-6 py-4 whitespace-nowrap text-sm text-center">{recipe ? recipe.name : 'N/A'}</td>
