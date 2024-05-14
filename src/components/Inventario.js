@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getRawMaterialsPaginated } from "./api/api";
-
+import Spinner from "./Spinner";
 
 
 const updateRawMaterial = async (id, data) => {
-    console.log({ id: id, data: data })
+    // console.log({ id: id, data: data })
+
+    
     try {
         // Convertir los datos a formato x-www-form-urlencoded
         const formData = new URLSearchParams();
@@ -64,17 +66,34 @@ function Inventario() {
     const [rawMaterials, setRawMaterials] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedMaterial, setSelectedMaterial] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    // useEffect(() => {
+    //     async function fetchRawMaterials() {
+    //         const result = await getRawMaterialsPaginated(page);
+    //         if (result) {
+    //             setTotalPages(result.totalPages);
+    //             setRawMaterials(result.rawMaterials);
+    //         }
+    //     }
+    //     fetchRawMaterials();
+    // }, [page]);
 
     useEffect(() => {
         async function fetchRawMaterials() {
-            const result = await getRawMaterialsPaginated(page);
-            if (result) {
-                setTotalPages(result.totalPages);
-                setRawMaterials(result.rawMaterials);
+            try {
+                const result = await getRawMaterialsPaginated(page);
+                if (result) {
+                    setTotalPages(result.totalPages);
+                    setRawMaterials(result.rawMaterials);
+                }
+            } finally {
+                setLoading(false);
             }
         }
         fetchRawMaterials();
     }, [page]);
+    
 
     const handleRowClick = (material) => {
         setSelectedMaterial(material);
@@ -113,7 +132,12 @@ function Inventario() {
             <h2 className="text-center font-bold my-10 text-2xl md:text-3xl">Listado de Materias Primas</h2>
     
             <div className="overflow-x-auto">
-    <table className="w-full table-auto bg-white shadow-md rounded-md">
+
+            {loading ? (
+            <Spinner />
+        ) : (
+            <div className="overflow-x-auto">
+                    <table className="w-full table-auto bg-white shadow-md rounded-md">
         <thead>
             <tr className="text-gray-600 uppercase text-sm leading-normal">
                 <th className="py-3 px-4 md:px-6 text-left">Nombre</th>
@@ -134,6 +158,12 @@ function Inventario() {
             ))}
         </tbody>
     </table>
+            </div>
+        )}
+
+
+                
+
 </div>
 
     
