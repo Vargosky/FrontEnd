@@ -3,6 +3,7 @@ import { getAllSubproductos } from './api/api';
 import RecipeCard from './RecipeCard';
 import { crearNuevaProduccion } from './api/apiProduccion'; // Actualiza con la ruta correcta
 import { descontarCantidad, getRawMaterialById } from './api/api'
+import RecipeCardSinCostos from './RecipeCardSinCostos';
 
 function FormularioRecetas() {
     const [cantidad, setCantidad] = useState(1);
@@ -158,7 +159,7 @@ function FormularioRecetas() {
 
             </div>
 
-            <RecipeCard key={i++} recipe={recetaSeleccionada} cantidad={cantidad} />
+            <RecipeCardSinCostos key={i++} recipe={recetaSeleccionada} cantidad={cantidad} />
 
 
         </form>
