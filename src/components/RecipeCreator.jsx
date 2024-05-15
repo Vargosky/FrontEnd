@@ -92,9 +92,9 @@ const RecipeCreator = () => {
                         onChange={(e) => setCategory(e.target.value)}
                         className="w-full p-2 border rounded"
                     >
-                        <option value="">Selecciona el tipo de receta</option>
-                        <option value="Masa">Masa</option>
-                        <option value="Relleno">Relleno</option>
+                        <option key={1} value="">Selecciona el tipo de receta</option>
+                        <option key={2} value="Masa">Masa</option>
+                        <option key={3} value="Relleno">Relleno</option>
                     </select>
                 </div>
             </div>

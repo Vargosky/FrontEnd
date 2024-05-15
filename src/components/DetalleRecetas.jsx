@@ -160,11 +160,7 @@ function FormularioRecetas() {
 
             <RecipeCard key={i++} recipe={recetaSeleccionada} cantidad={cantidad} />
 
-            <div className="mt-4">
-                <button type="submit" className=" w-full  uppercase mt-10 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:border-green-700 focus:ring focus:ring-green-200 focus:ring-opacity-50">
-                    Descontar del Inventario
-                </button>
-            </div>
+
         </form>
     );
 

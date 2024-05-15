@@ -109,3 +109,11 @@ a {
     color-scheme: dark;
   }
 }
+
+
+.titulo-central{
+  margin: 0 auto;
+  font-size: 100px;
+  color: coral;
+  font-weight: bold;
+}

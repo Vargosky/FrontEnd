@@ -16,6 +16,8 @@ import FormularioCompras from '@/components/FormularioCompras';
 import ProveedorForm from '@/components/ProveedorForm';
 import RecipeCreatorFinal from '@/components/RecipeProductoFinal';
 import BuyList from '@/components/BuyList.js'
+import DetalleRecetas from '@/components/DetalleRecetas.jsx';
+import TituloCentral from '@/components/TituloCentral';
 
 
 
@@ -23,7 +25,7 @@ import BuyList from '@/components/BuyList.js'
 
 export default function Home() {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
-    const [currentComponent, setCurrentComponent] = useState(null);
+    const [currentComponent, setCurrentComponent] = useState('HOME');
     const [showComponent, setShowComponent] = useState(false);
     const [listadoRecetas, setListadoRecetas] = useState(null);
 
@@ -69,7 +71,7 @@ export default function Home() {
                 {/* Sidebar Menu */}
                 <div className={`w-full md:w-1/6 flex flex-col items-center bg-gray-50 rounded-2xl transition-all duration-300 ease-in-out ${isMenuVisible ? 'h-auto' : 'h-0'}`}>
                     <button
-                        className="transition duration-300 ease-in-out w-full py-1 uppercase text-white rounded bg-blue-500 hover:bg-blue-600 active:bg-blue-700 z-50"
+                        className="transition duration-300 ease-in-out w-full py-1 uppercase text-white rounded bg-orange-500 hover:bg-orange-600 active:bg-orange-700 z-50"
                         onClick={toggleMenu}
                     >
                         {isMenuVisible ? 'Ocultar Menú' : 'Mostrar Menú'}
@@ -92,6 +94,7 @@ export default function Home() {
                                     <button onClick={() => handleComponentChange('RecipeCreator')}>Nuevo Subproducto</button>
                                     <button onClick={() => handleComponentChange('RecipeCreatorFinal')}>Nuevo Producto</button>
                                     <button onClick={() => handleComponentChange('ListadoRecetasValorizadas')}>Valorizadas</button>
+                                    <button onClick={() => handleComponentChange('DetalleRecetas')}>Detalle</button>
                                     
                                 </>
                             }
@@ -130,8 +133,13 @@ export default function Home() {
                         {currentComponent === 'FormularioCompras' && <FormularioCompras />}
                         {currentComponent === 'ProveedorForm' && <ProveedorForm />}
                         {currentComponent === 'RecipeCreatorFinal' && <RecipeCreatorFinal/>}
+                        {currentComponent === 'DetalleRecetas' && <DetalleRecetas/>}
+                        
+                        
                     </div>
+                    {currentComponent === 'HOME' && <TituloCentral/>}
                 </div>
+
             </div>
         </>
     )
