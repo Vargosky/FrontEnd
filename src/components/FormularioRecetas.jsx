@@ -12,6 +12,7 @@ function FormularioRecetas() {
     const [idRecetaSeleccionada, setIdRecetaSeleccionada] = useState(null);
     const [materialesFabricacion, setMaterialesFabricacion] = useState(null);
     const [nombreReceta, setNombreReceta] = useState(null);
+    let i = 0;
 
     useEffect(() => {
         getAllSubproductos()
@@ -170,7 +171,7 @@ function FormularioRecetas() {
                         Seleccione una Receta
                     </option>
                     {recetas.sort((a, b) => a.name.localeCompare(b.name)).map((receta) => (
-                        <option key={receta.id} value={receta.id}>
+                        <option key={receta._id} value={receta.id}>
                             {receta.name}
                         </option>
                     ))}
@@ -178,7 +179,7 @@ function FormularioRecetas() {
 
             </div>
 
-            <RecipeCard recipe={recetaSeleccionada} cantidad={cantidad} />
+            <RecipeCard key={i++} recipe={recetaSeleccionada} cantidad={cantidad} />
 
             <div className="mt-4">
                 <button type="submit" className=" w-full  uppercase mt-10 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:border-green-700 focus:ring focus:ring-green-200 focus:ring-opacity-50">

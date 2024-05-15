@@ -110,7 +110,8 @@ function ProduccionesList() {
         <tbody>
           {filteredProducciones.map((produccion) => (
             <tr key={produccion._id} onClick={() => handleRowClick(produccion)}>
-              <td className="border border-gray-300 px-4 py-2">{moment(produccion.fechaCreacion).subtract(10, 'days').calendar()}</td>
+              <td className="border border-gray-300 px-4 py-2">{moment(produccion.fechaCreacion).format('DD/MM/YYYY')}</td>
+            {/* {moment(selectedProduccion.fechaCreacion).format('LL')} */}
               <td className="border border-gray-300 px-4 py-2">{produccion.nombre}</td>
               <td className="border border-gray-300 px-4 py-2">{produccion.cantidad}</td>
             </tr>
