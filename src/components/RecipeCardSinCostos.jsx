@@ -74,18 +74,18 @@ function RecipeCardSinCostos({ recipe, cantidad = 1 }) {
                         {ingredients.map(({ name, quantity, unidad, existencia }) => (
                             <tr key={name} className={quantity * cantidad > existencia ? 'bg-red-200' : ''}>
                                 <td className="border px-4 py-2 text-center">{name}</td>
-                                {/* <td className="border px-4 py-2 text-center">
+                                <td className="border px-4 py-2 text-center">
                                     <div className="flex items-center justify-center">
                                         <span>{quantity * cantidad}</span>
                                         <span className="ml-1">{convertirTexto(unidad)}</span>
                                     </div>
-                                </td> */}
-                                <td className="border px-4 py-2 text-center">
+                                </td>
+                                {/* <td className="border px-4 py-2 text-center">
                                     <div className="flex items-center justify-center">
                                         <span>{existencia}</span>
                                         <span className="ml-1">{convertirTexto(unidad)}</span>
                                     </div>
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                     </tbody>
